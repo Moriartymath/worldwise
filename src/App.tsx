@@ -4,6 +4,7 @@ import Pricing from "./pages/Pricing/Pricing";
 import Login from "./pages/Login/Login";
 import Error from "./pages/Error/Error";
 import Layout from "./pages/Layout/Layout";
+import Product from "./pages/Product/Product";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="pricing" element={<Pricing />} />
+          <Route path="product" element={<Product />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

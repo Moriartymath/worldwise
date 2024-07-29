@@ -1,0 +1,27 @@
+.imageContainer {
+  height: 4em;
+}
+
+.image {
+  height: 100%;
+  object-fit: contain;
+}
+
+.navBar,
+.linkList {
+  display: flex;
+  flex-direction: row;
+}
+
+.navBar {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linkList {
+  list-style: none;
+  column-gap: 2em;
+}
+.linkList * {
+  text-decoration: none;
+}
