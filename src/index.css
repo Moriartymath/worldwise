@@ -5,7 +5,8 @@
 }
 
 :root {
-  --color-main: #2e3439;
+  --color-mains: #2e3439;
+  --color-button: #00c46b;
 }
 
 html {
@@ -31,7 +32,7 @@ body {
   justify-content: space-between;
   height: 100%;
   width: 100%;
-  background-color: var(--color-main);
+  background-color: var(--color-mains);
   overflow-y: hidden;
 }
 
