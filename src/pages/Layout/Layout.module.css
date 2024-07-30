@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  height: -webkit-fill-available;
+  justify-content: center;
+}
+
+.default {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.5em;
+  height: 100%;
+}
+
+.imageContainer {
+  background-image: linear-gradient(
+      rgba(36, 42, 46, 0.8),
+      rgba(36, 42, 46, 0.8)
+    ),
+    url("../../assets/bg.jpg");
+  background-size: auto;
+  background-repeat: round;
+}

@@ -1,5 +1,5 @@
 .imageContainer {
-  height: 4em;
+  height: 2.75em;
 }
 
 .image {
@@ -16,12 +16,24 @@
 .navBar {
   justify-content: space-between;
   align-items: center;
+  padding: 1.3em 2.6em;
 }
 
 .linkList {
   list-style: none;
   column-gap: 2em;
+  padding-right: 0.5em;
+  align-items: center;
 }
 .linkList * {
   text-decoration: none;
+  text-transform: uppercase;
+  color: aliceblue;
+  font-size: 0.9rem;
+}
+
+.linkList .login {
+  background-color: #00c46b;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
 }
