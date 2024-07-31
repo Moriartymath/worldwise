@@ -1,6 +1,5 @@
 import styles from "./TravelInfo.module.css";
 import logo from "../../assets/logo.png";
-import CitiesList from "./CitiesList/CitiesList";
 import { Link, Outlet } from "react-router-dom";
 
 function TravelInfo() {

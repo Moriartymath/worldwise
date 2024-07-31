@@ -11,12 +11,12 @@ function City({ cityObj, setSelectedCityId }: CityProps) {
     <li
       className={styles.listItem}
       onClick={() => {
-        console.log("clicked!");
         setSelectedCityId(cityObj.id);
       }}
     >
-      <p>{cityObj.country}</p>
-      <p>{cityObj.lastVisited}</p>
+      <span>{cityObj.emoji}</span>
+      <p>{cityObj.cityName}</p>
+      <p>{new Date(cityObj.date).toLocaleDateString()}</p>
       <button className={styles.button}>&times;</button>
     </li>
   );

@@ -1,4 +1,10 @@
-import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  TileLayer,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
 
@@ -12,7 +18,7 @@ function AddMark() {
     },
   });
 
-  return position.length ? <Marker position={position}></Marker> : null;
+  return position.length !== 0 ? <Marker position={position}></Marker> : null;
 }
 
 function Map() {

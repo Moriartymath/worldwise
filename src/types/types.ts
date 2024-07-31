@@ -1,10 +1,14 @@
 type CityType = {
+  cityName: string;
   country: string;
-  city: string;
-  lastVisited: string;
+  emoji: string;
+  date: string;
   notes: string;
-  id: string;
-  wikiURL: string;
+  position: {
+    lat: number;
+    lng: number;
+  };
+  id: number;
 };
 
 type CountryType = {

@@ -9,17 +9,18 @@ type CityPreviewProps = {
 
 function CityPreview({ cityObj, setSelectedCityId }: CityPreviewProps) {
   const textList = [
-    { label: "City Name", childrens: <h3>{cityObj.city}</h3> },
+    { label: "City Name", childrens: <h3>{cityObj.cityName}</h3> },
     {
-      label: `You went to ${cityObj.city} on`,
-      childrens: <h3>{cityObj.lastVisited}</h3>,
+      label: `You went to ${cityObj.cityName} on`,
+      childrens: <h3>{new Date(cityObj.date).toLocaleDateString()}</h3>,
     },
+    { label: "Your note", childrens: <h3>{cityObj.notes}</h3> },
     {
       label: "Learn More",
       childrens: (
         <h3>
-          <a href={`https://en.wikipedia.org/wiki/${cityObj.city}`}>
-            {`Check out ${cityObj.city} on Wikipedia`} <span>&rarr;</span>
+          <a href={`https://en.wikipedia.org/wiki/${cityObj.cityName}`}>
+            {`Check out ${cityObj.cityName} on Wikipedia`} <span>&rarr;</span>
           </a>
         </h3>
       ),

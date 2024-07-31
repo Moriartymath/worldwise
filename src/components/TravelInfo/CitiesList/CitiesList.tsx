@@ -1,45 +1,51 @@
-import useLocalStorage from "../../../hooks/useLocalStorage";
 import City from "./City/City";
 import { CityType } from "../../../types/types";
 import styles from "./CitiesList.module.css";
 import { useState } from "react";
 import CityPreview from "./CityPreview/CityPreview";
+import { client } from "../../../client/client";
+import { Await, defer, useLoaderData } from "react-router-dom";
+import React from "react";
+import { AxiosPromise, AxiosResponse } from "axios";
 
 type CitiesListType = Array<CityType>;
 
-const temp = {
-  country: "Ukraine",
-  city: "Kyiv",
-  lastVisited: new Date().toLocaleDateString(),
-  notes: "Amazing",
-  id: "712345",
-};
+export async function loader() {
+  return defer({ res: client.get("cities") });
+}
 
 function CitiesList() {
-  const [citiesList, setCitiesList] = useLocalStorage("cities") as [
-    CitiesListType,
-    Function
-  ];
+  const { res } = useLoaderData() as { res: AxiosResponse<CitiesListType> };
+
   const [selectedCityId, setSelectedCityId] = useState(null);
 
   if (selectedCityId !== null) {
     return (
       <CityPreview
         setSelectedCityId={setSelectedCityId}
-        cityObj={citiesList.find((city) => city.id === selectedCityId)!}
+        cityObj={res.data.find((city) => city.id === selectedCityId)!}
       />
     );
   }
   return (
-    <ul className={styles.cityList}>
-      {citiesList.map((city, index) => (
-        <City
-          cityObj={city}
-          key={index}
-          setSelectedCityId={setSelectedCityId}
-        />
-      ))}
-    </ul>
+    <React.Suspense fallback={<h1>loading...</h1>}>
+      <Await resolve={res}>
+        {(res) => {
+          console.log(res);
+          return (
+            <ul className={styles.cityList}>
+              {res.data.map((city: CityType) => (
+                <City
+                  cityObj={city}
+                  key={city.id}
+                  setSelectedCityId={setSelectedCityId}
+                />
+              ))}
+            </ul>
+          );
+        }}
+      </Await>
+    </React.Suspense>
   );
 }
 
