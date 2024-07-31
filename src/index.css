@@ -9,6 +9,11 @@
   --color-button: #00c46b;
 }
 
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
 html {
   box-sizing: border-box;
   font-size: clamp(1vmin, 1.8vmin, 2vmax);

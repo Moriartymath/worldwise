@@ -6,18 +6,7 @@ function useLocalStorage(key: string) {
     return data ? JSON.parse(data) : [];
   });
   useEffect(() => {
-    localStorage.setItem(
-      key,
-      JSON.stringify([
-        {
-          country: "Ukraine",
-          city: "Kyiv",
-          lastVisited: new Date().toLocaleDateString(),
-          notes: "Amazing",
-          id: "712345",
-        },
-      ])
-    );
+    localStorage.setItem(key, JSON.stringify(value));
   }, [value, key]);
 
   return [value, setValue];

@@ -7,6 +7,7 @@ import Product from "./pages/Product/Product";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import AppPage from "./pages/AppPage/AppPage";
 import CitiesList from "./components/TravelInfo/CitiesList/CitiesList";
+import CountriesList from "./components/TravelInfo/CountriesList/CountriesList";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="app" element={<AppPage />}>
             <Route index element={<CitiesList />} />
             <Route path="cities" element={<CitiesList />} />
-            <Route path="countries" element={<h1>Countries route</h1>} />
+            <Route path="countries" element={<CountriesList />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
         </Route>

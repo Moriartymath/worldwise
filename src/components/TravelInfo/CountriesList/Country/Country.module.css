@@ -1,0 +1,12 @@
+.country {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  background-color: #42484d;
+  width: 47%;
+  border-radius: 0.5em;
+  justify-content: center;
+  align-items: center;
+  color: #ececec;
+  border-left: 0.5em solid orange;
+}

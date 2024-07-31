@@ -9,12 +9,12 @@ function TravelInfo() {
       <div className={styles.imageContainer}>
         <img src={logo} />
       </div>
-      <div>
+      <div className={styles.tabs}>
         <Link to="cities">
-          <button className={styles.button}>Cities</button>
+          <button className={styles.tab}>Cities</button>
         </Link>
         <Link to="countries">
-          <button className={styles.button}>Countries</button>
+          <button className={styles.tab}>Countries</button>
         </Link>
       </div>
       <Outlet />

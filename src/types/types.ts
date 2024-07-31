@@ -6,4 +6,9 @@ type CityType = {
   id: string;
   wikiURL: string;
 };
-export type { CityType };
+
+type CountryType = {
+  flag?: string;
+  name: string;
+};
+export type { CityType, CountryType };

@@ -7,6 +7,14 @@ import CityPreview from "./CityPreview/CityPreview";
 
 type CitiesListType = Array<CityType>;
 
+const temp = {
+  country: "Ukraine",
+  city: "Kyiv",
+  lastVisited: new Date().toLocaleDateString(),
+  notes: "Amazing",
+  id: "712345",
+};
+
 function CitiesList() {
   const [citiesList, setCitiesList] = useLocalStorage("cities") as [
     CitiesListType,
