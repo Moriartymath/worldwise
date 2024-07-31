@@ -1,0 +1,6 @@
+.cityList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2em;
+  width: 100%;
+}

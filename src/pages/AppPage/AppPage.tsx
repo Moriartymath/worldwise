@@ -1,9 +1,17 @@
-import { useLocation } from "react-router";
+import TravelInfo from "../../components/TravelInfo/TravelInfo";
+import { loginContext } from "../../contexts/LoginContext";
+import { useContext } from "react";
+import styles from "./AppPage.module.css";
+import { Outlet } from "react-router";
 
 function AppPage() {
-  const { email, password } = useLocation().state;
-  console.log(email, password);
-  return <div></div>;
+  const loginObj = useContext(loginContext);
+  console.log(loginObj);
+  return (
+    <div className={styles.appContainer}>
+      <TravelInfo />
+    </div>
+  );
 }
 
 export default AppPage;

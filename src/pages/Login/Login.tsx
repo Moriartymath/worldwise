@@ -3,11 +3,6 @@ import styles from "./Login.module.css";
 import { Link, Navigate } from "react-router-dom";
 import { loginContext } from "../../contexts/LoginContext";
 
-type LoginProps = {
-  isLogined: boolean;
-  setIsLogined: Function;
-};
-
 type loginInfoType = {
   email: string;
   password: string;
@@ -36,7 +31,7 @@ function reducer(
   }
 }
 
-function Login({ isLogined, setIsLogined }: LoginProps) {
+function Login() {
   const loginObj = useContext(loginContext);
 
   const [loginInfo, dispatch] = useReducer(reducer, {
@@ -51,14 +46,9 @@ function Login({ isLogined, setIsLogined }: LoginProps) {
     dispatch({ type, payload: ev.target.value });
   }
 
-  if (isLogined) {
+  if (loginObj.email && loginObj.password) {
     console.log("All info context: ", loginObj.email, loginObj.password);
-    return (
-      <Navigate
-        to={"/app"}
-        state={{ email: loginObj.email, password: loginObj.password }}
-      />
-    );
+    return <Navigate to="/app" />;
   }
 
   return (
@@ -82,7 +72,6 @@ function Login({ isLogined, setIsLogined }: LoginProps) {
         to={"/app"}
         state={loginInfo}
         onClick={() => {
-          setIsLogined(true);
           loginObj.setInfo(loginInfo.email, loginInfo.password);
         }}
       >

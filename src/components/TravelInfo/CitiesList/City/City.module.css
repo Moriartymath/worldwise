@@ -1,0 +1,29 @@
+.listItem {
+  --color-outline: #00c46b;
+  display: flex;
+  flex-direction: row;
+  background-color: #42484d;
+  border-radius: 0.5em;
+  border-left: 10px solid var(--color-outline);
+  padding: 0.6em;
+  color: white;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.listItem:focus:active {
+  border-top: 2px solid lightcoral;
+  border-bottom: 2px solid var(--color-outline);
+  border-right: 2px solid var(--color-outline);
+}
+
+.button {
+  border-radius: 50%;
+  width: 1.1em;
+  height: 1.1em;
+  font-size: 1rem;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

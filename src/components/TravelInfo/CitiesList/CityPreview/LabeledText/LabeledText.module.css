@@ -1,0 +1,12 @@
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+  text-transform: uppercase;
+}
+
+.description * {
+  display: flex;
+  flex-direction: row;
+  color: #ececec;
+}

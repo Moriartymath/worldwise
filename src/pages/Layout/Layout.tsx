@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router";
 import NavBar from "../../components/NavBar/NavBar";
 import styles from "./Layout.module.css";
+import AppPage from "../AppPage/AppPage";
 
 function Layout() {
   const { pathname } = useLocation();
@@ -11,12 +12,18 @@ function Layout() {
         pathname === "/" ? styles.imageContainer : ""
       }`}
     >
-      <header>
-        <NavBar />
-      </header>
-      <main className={styles.main}>
+      {!pathname.includes("app") ? (
+        <>
+          <header>
+            <NavBar />
+          </header>
+          <main className={styles.main}>
+            <Outlet />
+          </main>
+        </>
+      ) : (
         <Outlet />
-      </main>
+      )}
     </div>
   );
 }
