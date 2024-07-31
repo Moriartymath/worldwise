@@ -1,5 +1,12 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import styles from "./Login.module.css";
+import { Link, Navigate } from "react-router-dom";
+import { loginContext } from "../../contexts/LoginContext";
+
+type LoginProps = {
+  isLogined: boolean;
+  setIsLogined: Function;
+};
 
 type loginInfoType = {
   email: string;
@@ -29,7 +36,9 @@ function reducer(
   }
 }
 
-function Login() {
+function Login({ isLogined, setIsLogined }: LoginProps) {
+  const loginObj = useContext(loginContext);
+
   const [loginInfo, dispatch] = useReducer(reducer, {
     email: "",
     password: "",
@@ -42,7 +51,15 @@ function Login() {
     dispatch({ type, payload: ev.target.value });
   }
 
-  console.log(loginInfo.email, loginInfo.password);
+  if (isLogined) {
+    console.log("All info context: ", loginObj.email, loginObj.password);
+    return (
+      <Navigate
+        to={"/app"}
+        state={{ email: loginObj.email, password: loginObj.password }}
+      />
+    );
+  }
 
   return (
     <form className={styles.loginForm}>
@@ -61,7 +78,16 @@ function Login() {
           onChange={(ev) => handleOnChange(ev, actions.changePassword)}
         />
       </div>
-      <button className={styles.loginButton}>Login</button>
+      <Link
+        to={"/app"}
+        state={loginInfo}
+        onClick={() => {
+          setIsLogined(true);
+          loginObj.setInfo(loginInfo.email, loginInfo.password);
+        }}
+      >
+        <button className={styles.loginButton}>Login</button>
+      </Link>
     </form>
   );
 }
