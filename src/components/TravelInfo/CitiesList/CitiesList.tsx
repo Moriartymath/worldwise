@@ -1,12 +1,11 @@
 import City from "./City/City";
 import { CityType } from "../../../types/types";
 import styles from "./CitiesList.module.css";
-import { useState } from "react";
-import CityPreview from "./CityPreview/CityPreview";
+import { useContext } from "react";
 import { client } from "../../../client/client";
-import { Await, defer, useLoaderData } from "react-router-dom";
-import React from "react";
-import { AxiosPromise, AxiosResponse } from "axios";
+import { defer } from "react-router-dom";
+
+import { CitiesContext } from "../../../contexts/CitiesContext";
 
 type CitiesListType = Array<CityType>;
 
@@ -15,37 +14,13 @@ export async function loader() {
 }
 
 function CitiesList() {
-  const { res } = useLoaderData() as { res: AxiosResponse<CitiesListType> };
-
-  const [selectedCityId, setSelectedCityId] = useState(null);
-
-  if (selectedCityId !== null) {
-    return (
-      <CityPreview
-        setSelectedCityId={setSelectedCityId}
-        cityObj={res.data.find((city) => city.id === selectedCityId)!}
-      />
-    );
-  }
+  const cities = useContext(CitiesContext);
   return (
-    <React.Suspense fallback={<h1>loading...</h1>}>
-      <Await resolve={res}>
-        {(res) => {
-          console.log(res);
-          return (
-            <ul className={styles.cityList}>
-              {res.data.map((city: CityType) => (
-                <City
-                  cityObj={city}
-                  key={city.id}
-                  setSelectedCityId={setSelectedCityId}
-                />
-              ))}
-            </ul>
-          );
-        }}
-      </Await>
-    </React.Suspense>
+    <ul className={styles.cityList}>
+      {cities.map((city: CityType) => (
+        <City cityObj={city} key={city.id} />
+      ))}
+    </ul>
   );
 }
 

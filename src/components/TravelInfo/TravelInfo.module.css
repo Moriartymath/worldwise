@@ -29,6 +29,6 @@
   border-radius: 0.5em;
   background-color: #42484d;
 }
-.tab:focus {
+.tab.active {
   background-color: #242a2e;
 }

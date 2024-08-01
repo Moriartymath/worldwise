@@ -8,7 +8,7 @@ type CountryProps = {
 function Country({ countryObj }: CountryProps) {
   return (
     <li className={styles.country}>
-      <div className={styles.imageContainer}></div>
+      <span style={{ transform: "scale(3)" }}>{countryObj.flag}</span>
       <h3>{countryObj.name}</h3>
     </li>
   );
