@@ -1,21 +1,23 @@
-import useLocalStorage from "../../../hooks/useLocalStorage";
 import styles from "./CountriesList.module.css";
-import { CountryType } from "../../../types/types";
+import { CityType } from "../../../types/types";
 import Country from "./Country/Country";
-import { useContext } from "react";
-import { CitiesContext } from "../../../contexts/CitiesContext";
+import { useCities } from "../../../contexts/CitiesContext";
 
 function CountriesList() {
-  const cities = useContext(CitiesContext);
+  const { citiesList } = useCities();
 
-  const allCountries = [...new Set(cities.map((city) => city.country))];
+  const allCountries = [
+    ...new Set(citiesList.map((city: CityType) => city.country)),
+  ];
 
   return (
     <ul className={styles.list}>
-      {allCountries.map((countryName) => (
+      {allCountries.map((countryName: string) => (
         <Country
           countryObj={{
-            flag: cities.find((city) => city.country === countryName)?.emoji,
+            flag: citiesList.find(
+              (city: CityType) => city.country === countryName
+            )?.emoji,
             name: countryName,
           }}
         />

@@ -1,5 +1,6 @@
 import {
   BrowserRouter,
+  Navigate,
   Route,
   RouterProvider,
   Routes,
@@ -20,6 +21,7 @@ import CountriesList from "./components/TravelInfo/CountriesList/CountriesList";
 import CityPreview, {
   loader as cityPreviewLoader,
 } from "./components/TravelInfo/CitiesList/CityPreview/CityPreview";
+import CityForm from "./components/CityForm/CityForm";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,14 +31,15 @@ const router = createBrowserRouter(
       <Route path="pricing" element={<Pricing />} />
       <Route path="product" element={<Product />} />
       <Route id="app" path="app" element={<AppPage />} loader={citiesLoader}>
-        <Route index element={<CitiesList />} loader={citiesLoader} />
-        <Route path="cities" element={<CitiesList />} loader={citiesLoader} />
+        <Route index element={<Navigate replace to="cities" />} />
+        <Route path="cities" element={<CitiesList />} />
         <Route
           path="cities/:cityId"
           element={<CityPreview />}
           loader={cityPreviewLoader}
         />
         <Route path="countries" element={<CountriesList />} />
+        <Route path="form" element={<CityForm />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Route>

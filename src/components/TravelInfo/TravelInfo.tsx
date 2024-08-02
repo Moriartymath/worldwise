@@ -1,6 +1,6 @@
 import styles from "./TravelInfo.module.css";
 import logo from "../../assets/logo.png";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 type TravelInfoProps = {

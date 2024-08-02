@@ -8,8 +8,16 @@ type CityProps = {
 
 function City({ cityObj }: CityProps) {
   const navigate = useNavigate();
+
   return (
-    <li className={styles.listItem} onClick={() => navigate(`${cityObj.id}`)}>
+    <li
+      className={styles.listItem}
+      onClick={() =>
+        navigate(
+          `${cityObj.id}?lat=${cityObj.position.lat}&lng=${cityObj.position.lng}`
+        )
+      }
+    >
       <div className={styles.emogiNameContainer}>
         <span style={{ transform: "scale(2)" }}>{cityObj.emoji}</span>
         <p>{cityObj.cityName}</p>
