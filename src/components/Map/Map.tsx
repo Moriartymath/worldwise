@@ -3,6 +3,7 @@ import {
   Marker,
   Popup,
   TileLayer,
+  useMap,
   useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -26,8 +27,16 @@ function AddMark() {
   return position.length !== 0 ? <Marker position={position}></Marker> : null;
 }
 
+function FlytoPos({ pos }: { pos: Array<number> }) {
+  const map = useMap();
+
+  if (pos.length === 2) map.flyTo(pos, 13);
+
+  return null;
+}
+
 function Map() {
-  const { citiesList } = useCities();
+  const { citiesList, selectedCityPosition } = useCities();
 
   return (
     <div style={{ height: "100%", width: "70%" }}>
@@ -43,13 +52,14 @@ function Map() {
               <Popup>
                 <h3>
                   {city.emoji} {city.cityName}
-                </h3>{" "}
-                <br></br>
+                </h3>
+                <br />
                 {city.notes}
               </Popup>
             </Marker>
           );
         })}
+        <FlytoPos pos={selectedCityPosition} />
       </MapContainer>
     </div>
   );

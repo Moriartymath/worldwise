@@ -18,6 +18,8 @@ const CitiesContext = createContext(null) as React.Context<null | {
   citiesList: CityType[] | undefined;
   addCityMutation: (cityObj: CityType) => void;
   isLoading: boolean;
+  selectedCityPosition: number[];
+  setSelectedCityPosition: Function;
 }>;
 
 async function getCities() {
@@ -49,6 +51,8 @@ function CitiesProvider({ children }: CitiesProviderProps) {
     },
   });
 
+  const [selectedCityPosition, setSelectedCityPosition] = useState([]);
+
   console.log(citiesList, isLoading);
   return (
     <CitiesContext.Provider
@@ -56,6 +60,8 @@ function CitiesProvider({ children }: CitiesProviderProps) {
         citiesList,
         addCityMutation,
         isLoading,
+        selectedCityPosition,
+        setSelectedCityPosition,
       }}
     >
       {children}
