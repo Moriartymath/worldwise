@@ -1,8 +1,15 @@
-import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMapEvents,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useCities } from "../../contexts/CitiesContext";
+import { CityType } from "../../types/types";
 
 function AddMark() {
   const [position, setPosition] = useState([]) as [number[], Function];
@@ -24,15 +31,23 @@ function Map() {
 
   return (
     <div style={{ height: "100%", width: "70%" }}>
-      <MapContainer center={[51.05, 21.05]} zoom={13} scrollWheelZoom={false}>
+      <MapContainer center={[51.05, 21.05]} zoom={13} scrollWheelZoom={true}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <AddMark />
-        {citiesList?.map((city, index) => {
+        {citiesList?.map((city: CityType, index) => {
           return (
             <Marker
               position={[city.position.lat, city.position.lng]}
               key={index}
-            />
+            >
+              <Popup>
+                <h3>
+                  {city.emoji} {city.cityName}
+                </h3>{" "}
+                <br></br>
+                {city.notes}
+              </Popup>
+            </Marker>
           );
         })}
       </MapContainer>
