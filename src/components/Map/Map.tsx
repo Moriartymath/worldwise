@@ -7,11 +7,12 @@ import { useCities } from "../../contexts/CitiesContext";
 function AddMark() {
   const [position, setPosition] = useState([]) as [number[], Function];
   const navigate = useNavigate();
-  console.log(position);
+
   const map = useMapEvents({
     click(ev) {
+      console.log(ev);
       setPosition([ev.latlng.lat, ev.latlng.lng]);
-      navigate(`/app/form?${ev.latlng.lat}&${ev.latlng.lng}`);
+      navigate(`/app/form?lat=${ev.latlng.lat}&lng=${ev.latlng.lng}`);
     },
   });
 
@@ -26,8 +27,13 @@ function Map() {
       <MapContainer center={[51.05, 21.05]} zoom={13} scrollWheelZoom={false}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <AddMark />
-        {citiesList.map((city) => {
-          return <Marker position={[city.position.lat, city.position.lng]} />;
+        {citiesList?.map((city, index) => {
+          return (
+            <Marker
+              position={[city.position.lat, city.position.lng]}
+              key={index}
+            />
+          );
         })}
       </MapContainer>
     </div>

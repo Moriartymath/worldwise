@@ -1,27 +1,61 @@
 import { createContext, useContext, useState } from "react";
 import React from "react";
 import { CityType } from "../types/types";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
+import axios from "axios";
+import { client } from "../client/client";
 
 type CitiesProviderProps = {
   children: any;
-  res: CityType[];
 };
 
 const CitiesContext = createContext(null) as React.Context<null | {
-  citiesList: CityType[];
-  setCitiesList: Function;
+  citiesList: CityType[] | undefined;
+  addCityMutation: (cityObj: CityType) => void;
+  isLoading: boolean;
 }>;
 
-function CitiesProvider({ children, res }: CitiesProviderProps) {
-  const [citiesList, setCitiesList] = useState(res);
+async function getCities() {
+  const res = await client.get("cities");
+  return res.data as CityType[];
+}
 
-  //useEffect(() => {}, [citiesList, setCitiesList]);
+async function addCity(cityObj: CityType) {
+  await client.post("cities", cityObj);
+}
 
+export async function getCity(id: string) {
+  const res = await client.get(`cities/${id}`);
+  return res.data;
+}
+
+function CitiesProvider({ children }: CitiesProviderProps) {
+  const queryClient = useQueryClient();
+
+  const { data: citiesList, isLoading } = useQuery({
+    queryFn: getCities,
+    queryKey: ["cities"],
+  }) as { data: CityType[] | undefined; isLoading: boolean };
+
+  const { mutateAsync: addCityMutation } = useMutation({
+    mutationFn: addCity,
+    onSuccess: () => {
+      queryClient.invalidateQueries("cities");
+    },
+  });
+
+  console.log(citiesList, isLoading);
   return (
     <CitiesContext.Provider
       value={{
         citiesList,
-        setCitiesList,
+        addCityMutation,
+        isLoading,
       }}
     >
       {children}
