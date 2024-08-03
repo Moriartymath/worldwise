@@ -31,15 +31,7 @@ const router = createBrowserRouter(
       <Route path="product" element={<Product />} />
       <Route id="app" path="app" element={<AppPage />}>
         <Route index element={<Navigate replace to="cities" />} />
-        <Route
-          path="cities"
-          element={<CitiesList />}
-          action={async (reqObj) => {
-            const data = await reqObj.request.formData();
-            console.log(data.get("note"), data.get("date"), data.get("city"));
-            return data;
-          }}
-        />
+        <Route path="cities" element={<CitiesList />} />
         <Route path="cities/:id" element={<CityPreview />} />
         <Route path="countries" element={<CountriesList />} />
         <Route path="form" element={<CityForm />} />

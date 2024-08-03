@@ -8,7 +8,7 @@ type CityType = {
     lat: number;
     lng: number;
   };
-  id: number;
+  id: string;
 };
 
 type CountryType = {
