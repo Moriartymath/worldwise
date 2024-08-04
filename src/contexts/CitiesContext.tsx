@@ -16,7 +16,8 @@ type CitiesProviderProps = {
 
 const CitiesContext = createContext(null) as React.Context<null | {
   citiesList: CityType[] | undefined;
-  addCityMutation: (cityObj: CityType) => void;
+  addCityMutation: (cityObj: CityType) => Promise<void>;
+  deleteCityMutation: (id: string) => Promise<void>;
   isLoading: boolean;
   selectedCityPosition: number[];
   setSelectedCityPosition: Function;
@@ -36,6 +37,9 @@ export async function getCity(id: string) {
   return res.data;
 }
 
+async function deleteCity(id: string) {
+  await client.delete(`cities/${id}`);
+}
 function CitiesProvider({ children }: CitiesProviderProps) {
   const queryClient = useQueryClient();
 
@@ -51,6 +55,14 @@ function CitiesProvider({ children }: CitiesProviderProps) {
     },
   });
 
+  const { mutateAsync: deleteCityMutation } = useMutation({
+    mutationFn: deleteCity,
+    onSuccess() {
+      console.log("deleting");
+      queryClient.invalidateQueries("cities");
+    },
+  });
+
   const [selectedCityPosition, setSelectedCityPosition] = useState([]);
 
   console.log(citiesList, isLoading);
@@ -62,6 +74,7 @@ function CitiesProvider({ children }: CitiesProviderProps) {
         isLoading,
         selectedCityPosition,
         setSelectedCityPosition,
+        deleteCityMutation,
       }}
     >
       {children}

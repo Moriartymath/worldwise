@@ -19,6 +19,8 @@ import CountriesList from "./components/TravelInfo/CountriesList/CountriesList";
 import CityPreview from "./components/TravelInfo/CitiesList/CityPreview/CityPreview";
 import CityForm from "./components/CityForm/CityForm";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { LoginProvider } from "./contexts/LoginContext";
+import Auth from "./auth/Auth";
 
 const queryClient = new QueryClient();
 
@@ -29,12 +31,15 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="pricing" element={<Pricing />} />
       <Route path="product" element={<Product />} />
-      <Route id="app" path="app" element={<AppPage />}>
-        <Route index element={<Navigate replace to="cities" />} />
-        <Route path="cities" element={<CitiesList />} />
-        <Route path="cities/:id" element={<CityPreview />} />
-        <Route path="countries" element={<CountriesList />} />
-        <Route path="form" element={<CityForm />} />
+      <Route element={<Auth />}>
+        <Route id="app" path="app" element={<AppPage />}>
+          <Route index element={<Navigate replace to="cities" />} />
+          <Route path="cities" element={<CitiesList />} />
+          <Route path="cities/:id" element={<CityPreview />} />
+          <Route path="countries" element={<CountriesList />} />
+          <Route path="form" element={<CityForm />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Route>
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Route>
@@ -43,7 +48,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <LoginProvider>
+        <RouterProvider router={router} />
+      </LoginProvider>
     </QueryClientProvider>
   );
 }

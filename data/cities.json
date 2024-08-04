@@ -1,87 +1,27 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": "73930385"
-    },
-    {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
-      "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": "17806751"
-    },
-    {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
-    },
-    {
-      "id": "1722664975866",
-      "cityName": "Рэчкаўскі сельскі Савет",
-      "country": "Belarus",
-      "emoji": "🇧🇾",
-      "date": "03/08/2024",
-      "notes": "just note",
-      "position": {
-        "lat": 52.442718779901426,
-        "lng": 25.988102016442607
-      }
-    },
-    {
-      "id": "1722668978154",
-      "cityName": "Wąchock",
-      "country": "Poland",
-      "emoji": "🇵🇱",
-      "date": "03/08/2024",
-      "notes": "",
-      "position": {
-        "lat": 51.08411010979803,
-        "lng": 21.03895311129914
-      }
-    },
-    {
-      "id": "1722668993682",
+      "id": "1722720917853",
       "cityName": "Starachowice",
       "country": "Poland",
       "emoji": "🇵🇱",
-      "date": "03/08/2024",
-      "notes": "asd",
+      "date": "04/08/2024",
+      "notes": "",
       "position": {
-        "lat": 51.041719095722414,
-        "lng": 21.028136442057523
+        "lat": 51.03567174866638,
+        "lng": 21.03779674777489
       }
     },
     {
-      "id": "1722669021959",
-      "cityName": "Siekierno-Przedgrab",
+      "id": "1722720921054",
+      "cityName": "Starachowice",
       "country": "Poland",
       "emoji": "🇵🇱",
-      "date": "03/08/2024",
-      "notes": "asd",
+      "date": "04/08/2024",
+      "notes": "",
       "position": {
-        "lat": 51.010089337383526,
-        "lng": 20.962893040282722
+        "lat": 51.067830712517626,
+        "lng": 21.050159295077986
       }
     }
   ]

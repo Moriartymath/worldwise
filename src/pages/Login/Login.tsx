@@ -1,7 +1,8 @@
 import React, { useReducer, useContext } from "react";
 import styles from "./Login.module.css";
-import { Link, Navigate } from "react-router-dom";
-import { loginContext } from "../../contexts/LoginContext";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useUser } from "../../contexts/LoginContext";
+import { useQuery } from "react-query";
 
 type loginInfoType = {
   email: string;
@@ -32,13 +33,15 @@ function reducer(
 }
 
 function Login() {
-  const loginObj = useContext(loginContext);
+  const { user, setUser, loginUser } = useUser();
+  const navigate = useNavigate();
 
   const [loginInfo, dispatch] = useReducer(reducer, {
     email: "",
     password: "",
   }) as [loginInfoType, (action: actionDispathType) => void];
 
+  console.log(loginInfo);
   function handleOnChange(
     ev: React.ChangeEvent<HTMLInputElement>,
     type: actions
@@ -46,13 +49,18 @@ function Login() {
     dispatch({ type, payload: ev.target.value });
   }
 
-  if (loginObj.email && loginObj.password) {
-    console.log("All info context: ", loginObj.email, loginObj.password);
-    return <Navigate to="/app" />;
-  }
-
   return (
-    <form className={styles.loginForm}>
+    <form
+      className={styles.loginForm}
+      onSubmit={async (ev) => {
+        ev.preventDefault();
+        const res = await loginUser(loginInfo.email, loginInfo.password);
+        if (res) {
+          setUser({ email: loginInfo.email, password: loginInfo.password });
+          navigate("/app");
+        } else console.log("Credential is wrong");
+      }}
+    >
       <div className={styles.inputContainer}>
         <p>Email adress</p>
         <input
@@ -68,15 +76,7 @@ function Login() {
           onChange={(ev) => handleOnChange(ev, actions.changePassword)}
         />
       </div>
-      <Link
-        to={"/app"}
-        state={loginInfo}
-        onClick={() => {
-          loginObj.setInfo(loginInfo.email, loginInfo.password);
-        }}
-      >
-        <button className={styles.loginButton}>Login</button>
-      </Link>
+      <button className={styles.loginButton}>Login</button>
     </form>
   );
 }
