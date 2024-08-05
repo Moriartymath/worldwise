@@ -11,7 +11,7 @@ function CityPreview() {
 
   const { data: cityObj, isLoading } = useQuery({
     queryFn: () => getCity(params.id),
-    queryKey: ["cities", params.id],
+    queryKey: [params.id],
     staleTime: Infinity,
     onSuccess(data) {
       setSelectedCityPosition([data?.position.lat, data?.position.lng]);
