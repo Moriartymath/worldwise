@@ -1,7 +1,6 @@
 import styles from "./CityPreview.module.css";
 import LabeledText from "./LabeledText/LabeledText";
 import { Link, useParams } from "react-router-dom";
-import React from "react";
 import { CityType } from "../../../../types/types";
 import { useQuery } from "react-query";
 import { getCity, useCities } from "../../../../contexts/CitiesContext";

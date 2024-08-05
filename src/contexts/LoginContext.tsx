@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
 import { userClient } from "../client/client";
-import { useQuery } from "react-query";
 
 type LoginProviderProps = {
   children: React.ReactElement;

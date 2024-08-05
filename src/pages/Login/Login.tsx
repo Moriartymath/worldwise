@@ -1,8 +1,7 @@
-import React, { useReducer, useContext } from "react";
+import React, { useReducer } from "react";
 import styles from "./Login.module.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../../contexts/LoginContext";
-import { useQuery } from "react-query";
 
 type loginInfoType = {
   email: string;
@@ -33,7 +32,7 @@ function reducer(
 }
 
 function Login() {
-  const { user, setUser, loginUser } = useUser();
+  const { setUser, loginUser } = useUser();
   const navigate = useNavigate();
 
   const [loginInfo, dispatch] = useReducer(reducer, {

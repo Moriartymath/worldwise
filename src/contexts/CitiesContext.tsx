@@ -1,13 +1,8 @@
 import { createContext, useContext, useState } from "react";
 import React from "react";
 import { CityType } from "../types/types";
-import {
-  QueryClient,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "react-query";
-import axios from "axios";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+
 import { client } from "../client/client";
 
 type CitiesProviderProps = {

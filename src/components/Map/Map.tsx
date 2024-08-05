@@ -7,7 +7,7 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useNavigate } from "react-router";
 import { useCities } from "../../contexts/CitiesContext";
 import { CityType } from "../../types/types";
@@ -16,7 +16,7 @@ function AddMark() {
   const [position, setPosition] = useState([]) as [number[], Function];
   const navigate = useNavigate();
 
-  const map = useMapEvents({
+  useMapEvents({
     click(ev) {
       console.log(ev);
       setPosition([ev.latlng.lat, ev.latlng.lng]);
@@ -24,20 +24,22 @@ function AddMark() {
     },
   });
 
-  return position.length !== 0 ? <Marker position={position}></Marker> : null;
+  return position.length !== 0 ? (
+    <Marker position={[position[0], position[1]]}></Marker>
+  ) : null;
 }
 
 function FlytoPos({ pos }: { pos: Array<number> }) {
   const map = useMap();
 
-  if (pos.length === 2) map.flyTo(pos, 13);
+  if (pos.length === 2) map.flyTo([pos[0], pos[1]], 13);
 
   return null;
 }
 
-function Map() {
+const Map = memo(function Map() {
   const { citiesList, selectedCityPosition } = useCities();
-
+  console.log("Map");
   return (
     <div style={{ height: "100%", width: "70%" }}>
       <MapContainer center={[51.05, 21.05]} zoom={13} scrollWheelZoom={true}>
@@ -63,6 +65,6 @@ function Map() {
       </MapContainer>
     </div>
   );
-}
+});
 
 export default Map;

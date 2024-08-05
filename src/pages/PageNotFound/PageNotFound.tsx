@@ -1,5 +1,3 @@
-import { useLocation } from "react-router";
-
 function PageNotFound() {
   return (
     <div>

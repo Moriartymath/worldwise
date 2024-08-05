@@ -3,7 +3,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { geocode } from "../../client/client";
 import { useReducer } from "react";
-import { countryCodeEmoji } from "country-code-emoji";
 import { useCities } from "../../contexts/CitiesContext";
 
 type stateType = {
@@ -53,7 +52,6 @@ function reducer(state: stateType, action: ActionType): stateType {
 const initialState = { date: formater.format(new Date()), note: "" };
 
 function CityForm() {
-  console.log(countryCodeEmoji);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const lat = +searchParams.get("lat")!;
@@ -84,7 +82,7 @@ function CityForm() {
           cityName: cityInfo.city,
 
           country: cityInfo.country,
-          emoji: countryCodeEmoji(cityInfo.country_code),
+          emoji: cityInfo.country_code,
           date: tripDetails.date,
           notes: tripDetails.note,
           position: {

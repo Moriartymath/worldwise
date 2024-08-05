@@ -23,6 +23,54 @@
         "lat": 51.067830712517626,
         "lng": 21.050159295077986
       }
+    },
+    {
+      "id": "1722853360091",
+      "cityName": "Mirzec",
+      "country": "Poland",
+      "emoji": "pl",
+      "date": "05/08/2024",
+      "notes": "",
+      "position": {
+        "lat": 51.09909710703706,
+        "lng": 21.04465011151552
+      }
+    },
+    {
+      "id": "1722853391372",
+      "cityName": "Wąchock",
+      "country": "Poland",
+      "emoji": "pl",
+      "date": "05/08/2024",
+      "notes": "",
+      "position": {
+        "lat": 51.08691626592594,
+        "lng": 21.027486392997666
+      }
+    },
+    {
+      "id": "1722853412448",
+      "cityName": "Rataje",
+      "country": "Poland",
+      "emoji": "pl",
+      "date": "05/08/2024",
+      "notes": "",
+      "position": {
+        "lat": 51.046033047047494,
+        "lng": 20.994530311635618
+      }
+    },
+    {
+      "id": "1722853466205",
+      "cityName": "Mirzec",
+      "country": "Poland",
+      "emoji": "pl",
+      "date": "05/08/2024",
+      "notes": "",
+      "position": {
+        "lat": 51.110741247536545,
+        "lng": 21.044820950372138
+      }
     }
   ]
 }
